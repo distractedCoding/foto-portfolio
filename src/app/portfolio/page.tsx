@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Gallery } from "@/components";
 
 // Später: dynamisch aus /content/projects laden
 const projects = [
@@ -15,6 +16,19 @@ const categories = [
   { id: "wedding", label: "Hochzeiten", count: 2 },
   { id: "portrait", label: "Portraits", count: 2 },
   { id: "event", label: "Events", count: 2 },
+];
+
+// Demo images for the gallery
+const galleryImages = [
+  { src: "", alt: "Hochzeit am See", title: "Hochzeit am See" },
+  { src: "", alt: "Romantische Hochzeit", title: "Romantische Hochzeit" },
+  { src: "", alt: "Portrait Serie", title: "Portrait Serie" },
+  { src: "", alt: "Corporate Headshots", title: "Corporate Headshots" },
+  { src: "", alt: "Business Event", title: "Business Event" },
+  { src: "", alt: "Kunstausstellung", title: "Kunstausstellung" },
+  { src: "", alt: "Sommer Shooting", title: "Sommer Shooting" },
+  { src: "", alt: "Familie im Park", title: "Familie im Park" },
+  { src: "", alt: "Produktfotografie", title: "Produktfotografie" },
 ];
 
 export default function PortfolioPage() {
@@ -55,9 +69,19 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Gallery Grid */}
+      {/* Gallery with Lightbox */}
       <section className="px-6 pb-24">
         <div className="max-w-7xl mx-auto">
+          <Gallery images={galleryImages} columns={3} />
+        </div>
+      </section>
+
+      {/* Project Cards */}
+      <section className="px-6 pb-24 bg-neutral-900">
+        <div className="max-w-7xl mx-auto pt-24">
+          <h2 className="text-3xl font-light text-white mb-12">
+            <span className="font-playfair italic">Projekte</span>
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
               <Link
@@ -74,7 +98,7 @@ export default function PortfolioPage() {
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300" />
                   
-                  {/* Content - always visible on mobile, hover on desktop */}
+                  {/* Content */}
                   <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
                     <div className="transform md:translate-y-4 md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <span className="text-white/60 text-xs uppercase tracking-wider">
